@@ -1,0 +1,1 @@
+[print(1 + (n - m) * m) for n, m in [map(int, input().split()) for _ in range(int(input()))]]
