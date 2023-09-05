@@ -1,0 +1,1 @@
+N, M = map(int, input().split());print('Yes' if all(all(a >= b for a, b in zip(bk, bk[1:])) for bk in [list(map(int, input().split())) for _ in range(2 * M)]) else 'No')
