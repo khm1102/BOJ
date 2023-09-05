@@ -1,0 +1,3 @@
+package main
+import ("bufio";."fmt";."os";"strings")
+func main() {reader:=bufio.NewReader(Stdin);input,_:= reader.ReadString('\n');IPv6:=strings.Split(strings.TrimSpace(input),":");if len(IPv6)<8{for i := range IPv6{if IPv6[i]==""{for len(IPv6)!=8{IPv6=append(IPv6[:i],append([]string{"0000"},IPv6[i:]...)...)}}}};if len(IPv6)==9{if IPv6[0]==""{IPv6=IPv6[1:]}else{IPv6=IPv6[:8]}};for i := range IPv6{if IPv6[i] == "" {IPv6[i] = "0000"};if len(IPv6[i])<4{for len(IPv6[i])!=4{IPv6[i]="0"+IPv6[i]}}};for i := 0;i < 7;i++{Printf("%s:",IPv6[i])};Println(IPv6[7])}
