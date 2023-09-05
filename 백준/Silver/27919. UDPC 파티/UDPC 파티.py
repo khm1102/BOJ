@@ -1,0 +1,1 @@
+s = input();r = "U"*(sum(c in 'CU' for c in s) > (sum(c in 'DP' for c in s) + 1) // 2) + "DP"*(any(c in 'DP' for c in s));print(r)
