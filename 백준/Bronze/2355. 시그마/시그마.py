@@ -1,0 +1,1 @@
+print((lambda a, b: b*(b+1)//2-a*(a-1)//2)(*sorted(map(int, input().split()))))
