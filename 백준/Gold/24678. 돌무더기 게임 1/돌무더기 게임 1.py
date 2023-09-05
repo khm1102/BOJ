@@ -1,0 +1,1 @@
+import sys;_ = [print('R' if sum(1 for num in map(int, sys.stdin.readline().split()) if num % 2 == 0) >= 2 else 'B') for _ in range(int(sys.stdin.readline()))]
