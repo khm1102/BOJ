@@ -1,10 +1,8 @@
+import sys
+def input(): return sys.stdin.readline().strip()
+def print(val):return sys.stdout.write(str(f"{val}\n"))
 def is_prime(num):
-    if num <= 1:
-        return False
-    if num == 2 or num == 3:
-        return True
-    if num % 2 == 0 or num % 3 == 0:
-        return False
+    return num > 1 and all(num % i != 0 for i in range(2, int(num ** 0.5) + 1))
     i = 5
     while i * i <= num:
         if num % i == 0 or num % (i + 2) == 0:
@@ -12,11 +10,7 @@ def is_prime(num):
         i += 6
     return True
 
-
-N = int(input())
-for _ in range(N):
+for _ in range(int(input())):
     n = int(input())
-    while not is_prime(n):
-        n += 1
+    while not is_prime(n): n += 1
     print(n)
-
