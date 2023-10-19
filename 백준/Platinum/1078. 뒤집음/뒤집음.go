@@ -1,56 +1,60 @@
 package main
 
 import (
-	"fmt"
+    "fmt"
 )
 
 func main() {
-	var d int64
-	fmt.Scan(&d)
+    var d int64
+    fmt.Scan(&d)
 
-	powersOfTen := make([]int64, 18)
-	powersOfTen[0] = 1
-	for i := 1; i < 18; i++ {
-		powersOfTen[i] = powersOfTen[i-1] * 10
-	}
+    result := findSpecial(d)
+    fmt.Println(result)
+}
 
-	for i := 2; i <= 18; i++ {
-		halfLength := i / 2
-		prefix := make([]int64, 0)
-		suffix := make([]int64, 0)
-		remaining := d
+func findSpecial(d int64) int64 {
+    powers := make([]int64, 18)
+    powers[0] = 1
+    for i := int64(1); i < 18; i++ {
+        powers[i] = powers[i-1] * 10
+    }
 
-		for j := 0; j < halfLength; j++ {
-			prefix = append(prefix, (powersOfTen[i-j-1]-powersOfTen[j])/powersOfTen[j])
-		}
+    for i := int64(2); i <= 18; i++ {
+        half := i / 2
+        pref := make([]int64, 0)
+        suff := make([]int64, 0)
+        remain := d
 
-		for j := 0; j < halfLength; j++ {
-			var a int64
-			if remaining >= 0 {
-				a = (10 - remaining%10) % 10
-			} else {
-				a = (-10 - remaining%10) % 10
-			}
-			suffix = append(suffix, a)
-			remaining = (remaining - a*prefix[j]) / 10
-		}
+        for j := int64(0); j < half; j++ {
+            pref = append(pref, (powers[i-j-1]-powers[j])/powers[j])
+        }
 
-		if remaining == 0 {
-			var result int64
-			for j := 0; j < halfLength; j++ {
-				if suffix[j] == 0 && j == 0 {
-					result += powersOfTen[i-1] + powersOfTen[0]
-				}
-				if suffix[j] > 0 {
-					result += powersOfTen[i-1-j] * suffix[j]
-				}
-				if suffix[j] < 0 {
-					result -= powersOfTen[j] * suffix[j]
-				}
-			}
-			fmt.Println(result)
-			return
-		}
-	}
-	fmt.Println("-1")
+        for j := int64(0); j < half; j++ {
+            var a int64
+            if remain >= 0 {
+                a = (10 - remain%10) % 10
+            } else {
+                a = (-10 - remain%10) % 10
+            }
+            suff = append(suff, a)
+            remain = (remain - a*pref[j]) / 10
+        }
+
+        if remain == 0 {
+            var result int64
+            for j := int64(0); j < half; j++ {
+                if suff[j] == 0 && j == 0 {
+                    result += powers[i-1] + powers[0]
+                }
+                if suff[j] > 0 {
+                    result += powers[i-1-j] * suff[j]
+                }
+                if suff[j] < 0 {
+                    result -= powers[j] * suff[j]
+                }
+            }
+            return result
+        }
+    }
+    return -1
 }
