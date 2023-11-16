@@ -15,7 +15,7 @@ int pow(int x, int y, int m) {
     return res;
 }
 
-int vandermonde(int N, vector<int> &a) {
+int vandermonde_matrix(int N, vector<int> &a) {
     int ans = 1;
     for (int i = 1; i < N; ++i) {
         for (int j = 0; j < i; ++j) {
@@ -27,14 +27,17 @@ int vandermonde(int N, vector<int> &a) {
 }
 
 int main() {
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
     vector<int> fact(501, 1);
     for (int i = 2; i < 501; ++i) {
         fact[i] = (1LL * fact[i - 1] * i) % mod;
     }
 
-    vector<int> hyper_fact(501, 1);
+    vector<int> hyper(501, 1);
     for (int i = 1; i < 501; ++i) {
-        hyper_fact[i] = (1LL * hyper_fact[i - 1] * fact[i]) % mod;
+        hyper[i] = (1LL * hyper[i - 1] * fact[i]) % mod;
     }
 
     int t;
@@ -46,8 +49,8 @@ int main() {
         for (int i = 0; i < N; ++i) {
             cin >> a[i];
         }
-        int ans = (1LL * vandermonde(N, a) * pow(hyper_fact[N - 1], mod - 2, mod)) % mod;
-        cout << ans << endl;
+        int ans = (1LL * vandermonde_matrix(N, a) * pow(hyper[N - 1], mod - 2, mod)) % mod;
+        cout << ans << "\n";
     }
 
     return 0;
