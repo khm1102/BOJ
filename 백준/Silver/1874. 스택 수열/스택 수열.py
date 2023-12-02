@@ -1,4 +1,4 @@
-def check_sequence(n, sequence):
+def f(n, sequence):
     stack = []  
     result = [] 
     current_num = 1  
@@ -16,9 +16,8 @@ def check_sequence(n, sequence):
             return 'NO'
     return '\n'.join(result)
 n = int(input())
-sequence = []
+arr = []
 for _ in range(n):
-    sequence.append(int(input()))
+    arr.append(int(input()))
 
-answer = check_sequence(n, sequence)
-print(answer)
+print(f(n, arr))
