@@ -1,5 +1,7 @@
+import sys
 mod = 10 ** 9 + 7
-
+def input(): return sys.stdin.readline().strip()
+def print(val):return sys.stdout.write(str(val))
 def add(a, b):
     return (a + b) % mod
 
