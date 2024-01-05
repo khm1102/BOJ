@@ -1,0 +1,1 @@
+print(eval('*'.join(map(str, [sum(map(int, x)) for x in input().split()]))))
