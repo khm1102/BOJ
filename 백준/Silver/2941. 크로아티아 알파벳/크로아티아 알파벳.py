@@ -1,6 +1,3 @@
-croatia = ['c=', 'c-', 'dz=', 'd-', 'lj', 'nj', 's=', 'z=']
-String = input()
-
-for i in croatia : String = String.replace(i, '*')  
-    
-print(len(String))
+import re
+reg = r'(c=|c-|dz=|d-|lj|nj|s=|z=|[a-z])'
+print(len(re.findall(reg,str(input()))))
