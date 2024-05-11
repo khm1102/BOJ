@@ -1,0 +1,1 @@
+solution=lambda p:[next((i-k for i in range(k+1,len(p))if p[i]<price),len(p)-k-1)for k,price in enumerate(p)]
