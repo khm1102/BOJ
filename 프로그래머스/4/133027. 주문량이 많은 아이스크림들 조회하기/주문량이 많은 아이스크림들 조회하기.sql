@@ -1,0 +1,1 @@
+select flavor from (select flavor, sum(total_order) as total_sum from (select flavor, total_order from first_half union all select flavor, total_order from july) as combined group by flavor order by total_sum desc limit 3) as result order by total_sum desc;
