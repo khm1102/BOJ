@@ -1,58 +1,57 @@
-def bitset_lcs(a, b):
-    m, n = len(a), len(b)
-    dp = [0] * (n + 1)
+from math import sqrt
 
-    for i in range(1, m + 1):
-        prev = 0
-        for j in range(1, n + 1):
-            temp = dp[j]
-            if a[i - 1] == b[j - 1]:
-                dp[j] = prev + 1
-            else:
-                dp[j] = max(dp[j], dp[j - 1])
-            prev = temp
-
-    return dp[n]
-
-def is_prime(N):
-    if N <= 1:
+def is_prime(num):
+    if num < 2:
         return False
-    if N <= 3:
-        return True
-    if N % 2 == 0 or N % 3 == 0:
-        return False
-    i = 5
-    while i * i <= N:
-        if N % i == 0 or N % (i + 2) == 0:
+    for i in range(2, int(sqrt(num)) + 1):
+        if num % i == 0:
             return False
-        i += 6
     return True
 
-def find_prime(N):
-    while not is_prime(N):
-        N -= 1
-    return N
 
-def plcs_length(oa, ob, x, y):
-    a = "".join(filter(lambda i: i != y, oa))
-    b = "".join(filter(lambda i: i != y, ob))
+def process_lcs_with_bitset(s1, s2):
+    D = 0
+    Match = [0] * 26
 
-    aidx = a.find(x)
-    bidx = b.find(x)
+    for i, char in enumerate(s2):
+        Match[ord(char) - ord('a')] |= 1 << i
 
-    lcs1 = bitset_lcs(a[:aidx], b[:bidx])
-    lcs2 = bitset_lcs(a[aidx:], b[bidx:])
+    for char in s1:
+        x = Match[ord(char) - ord('a')] | D
+        y = (D << 1) | 1
 
-    rst = lcs1 + lcs2
+        D = x ^ (x & (x - y))
 
-    if rst < 2:
-        return -1
+    return bin(D).count('1')
 
-    return find_prime(rst)
 
-oa = input()
-ob = input()
-x = input()
-y = input()
+def main():
+    s = input()
+    t = input()
+    x = input()
+    y = input()
 
-print(plcs_length(oa, ob, x, y))
+    s = s.replace(y, '')
+    t = t.replace(y, '')
+
+    pos_s = s.find(x)
+    pos_t = t.find(x)
+
+    s1 = s[:pos_s]
+    s2 = s[pos_s + 1:]
+    t1 = t[:pos_t]
+    t2 = t[pos_t + 1:]
+
+    ret1 = process_lcs_with_bitset(s1, t1)
+    ret2 = process_lcs_with_bitset(s2, t2)
+
+    for i in range(ret1 + ret2 + 1, -1, -1):
+        if is_prime(i):
+            print(i)
+            return
+
+    print(-1)
+
+
+if __name__ == "__main__":
+    main()
