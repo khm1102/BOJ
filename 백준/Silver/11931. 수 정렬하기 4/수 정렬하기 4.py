@@ -1,13 +1,16 @@
 import sys
 
-N = int(sys.stdin.readline())
+def main():
+    input = sys.stdin.read
+    data = input().split()
+    
+    n = int(data[0])
+    a = list(map(int, data[1:n+1]))
 
-num = []
+    a.sort(reverse=True)
 
-for _ in range(0, N):
-    num.append(int(sys.stdin.readline()))
+    for num in a:
+        print(num)
 
-num.sort()
-num.reverse()
-for i in range(0, N):
-    print(num[i])
+if __name__ == "__main__":
+    main()
