@@ -10,6 +10,10 @@
 
 구현
 
+### 제출 일자
+
+2023년 5월 24일 00:19:44
+
 ### 문제 설명
 
 <p>
@@ -17,7 +21,7 @@
 <p>
 	이 직사각형들이 차지하는 면적을 구하는 프로그램을 작성하시오.</p>
 <p>
-	<img alt="" src="" style="width: 294px; height: 227px; "></p>
+	<img alt="" src="https://www.acmicpc.net/upload/images/8vR77Ew2O2PqvZ1lER716.png" style="width: 294px; height: 227px; "></p>
 
 ### 입력 
 
