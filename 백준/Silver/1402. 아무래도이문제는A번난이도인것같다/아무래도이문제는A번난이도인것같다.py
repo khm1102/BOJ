@@ -1,0 +1,1 @@
+print("\n".join(["yes" for _ in range(int(input()))]))
