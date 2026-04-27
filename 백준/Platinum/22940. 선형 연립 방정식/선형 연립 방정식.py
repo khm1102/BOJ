@@ -1,13 +1,8 @@
-def f(m):
-    n=len(m)
-    for i in range(n):
-        d=m[i][i]
-        for j in range(i,n+1):m[i][j]/=d
-        for j in range(n):
-            if i==j:continue
-            d=-m[j][i]
-            for k in range(n+1):m[j][k]+=m[i][k]*d
-    return[row[n]for row in m]
-l=[]
-[l.append(list(map(float, input().split()))) for i in range(int(input()))]
-print(*[f'{i:.0f}'for i in f(l)])
+l=[list(map(float,input().split()))for _ in range(int(input()))]
+for i in range(len(l)):
+    for j in range(len(l)):
+        if i!=j:
+            r=l[j][i]/l[i][i]
+            for k in range(len(l[0])):l[j][k]-=r*l[i][k]
+    l[i]=[x/l[i][i]for x in l[i]]
+print(*[f'{r[-1]:.0f}'for r in l])
