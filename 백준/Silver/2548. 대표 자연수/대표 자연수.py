@@ -1,5 +1,2 @@
-def solve(n):
-    n.sort()
-    return n[(len(n) - 1) // 2]
-input()
-print(solve(list(map(int, input().split()))))
+n,a=input(),sorted(map(int,input().split()))
+print(a[(len(a)-1)//2])
