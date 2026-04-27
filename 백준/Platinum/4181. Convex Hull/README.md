@@ -1,4 +1,4 @@
-# [Platinum V] Convex Hull - 4181 
+# [Platinum IV] Convex Hull - 4181 
 
 [문제 링크](https://www.acmicpc.net/problem/4181) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-볼록 껍질, 기하학, 정렬
+정렬, 기하학, 볼록 껍질, 각도 정렬
 
 ### 제출 일자
 
@@ -16,7 +16,7 @@
 
 ### 문제 설명
 
-<p><img alt="" src="https://www.acmicpc.net/upload/images2/convex.png" style="float:right; height:210px; width:280px"></p>
+<p><img alt="" src="" style="float:right; height:210px; width:280px"></p>
 
 <p>때때로 주어진 점들 사이에서 볼록 껍질(Convex Hull)을 찾아내는 기술은 요긴하게 쓰인다. ACM 월드파이널에서 볼록 껍질을 응용해야 하는 문제가 출제되다 보니, 이걸 할 줄 아는 것은 참가자의 소양이 되었다.</p>
 
