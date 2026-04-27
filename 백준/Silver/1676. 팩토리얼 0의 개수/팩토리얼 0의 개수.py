@@ -1,8 +1,2 @@
-n = int(input())
-
-count = 0
-while n >= 5:
-    n //= 5
-    count += n
-    
-print(count)
+N = int(input())
+print(sum(N // 5**i for i in range(1, N//5 + 1)))
