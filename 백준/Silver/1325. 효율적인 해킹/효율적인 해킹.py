@@ -1,32 +1,32 @@
+from collections import deque
 
-n, m = map(int, input().split())
-graph = [[] for _ in range(n + 1)]
+def solve(start):
+    queue = deque([start])
+    visited = [False] * (N + 1)
+    visited[start] = True
 
-for _ in range(m):
+    while queue:
+        now = queue.popleft()
+        for i in arr[now]:
+            if not visited[i]:
+                cnt_arr[i] += 1
+                visited[i] = True
+                queue.append(i)
+
+N, M = map(int, input().split())
+arr = [[] for _ in range(N + 1)]
+cnt_arr = [0] * (N + 1)
+
+for _ in range(M):
     a, b = map(int, input().split())
-    graph[b].append(a) 
+    arr[a].append(b)
 
-max_computers = 0
-result_node = []
+max_value = 0
+result = []
 
-for start_node in range(1, n + 1):
-    visited = [False] * (n + 1)
-    result = 0
-    
-    stack = [start_node]
-    while stack:
-        node = stack.pop()
-        if not visited[node]:
-            visited[node] = True
-            result += 1
-            stack.extend(graph[node])
-    
-    if result > max_computers:
-        max_computers = result
-        result_node = [start_node]
-    elif result == max_computers:
-        result_node.append(start_node)
+for i in range(1, N + 1):
+    solve(i)
+    max_value = max(max_value, max(cnt_arr))
 
-result_node.sort()
-print(' '.join(map(str, result_node)))
-
+result = [i for i, cnt in enumerate(cnt_arr) if cnt == max_value]
+print(*result)
