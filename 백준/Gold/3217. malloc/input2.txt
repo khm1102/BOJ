@@ -1,0 +1,6 @@
+5
+aabb=malloc(50001);
+bbaa=malloc(50000);
+print(aabb);
+free(aabb);
+print(bbaa);

@@ -1,0 +1,4 @@
+3
+mama=malloc(140);
+tata=malloc(120);
+print(tata);

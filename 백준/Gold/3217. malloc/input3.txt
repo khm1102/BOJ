@@ -1,0 +1,6 @@
+5
+baka=malloc(214);
+baka=malloc(123);
+free(baka);
+deda=malloc(100);
+print(deda);
