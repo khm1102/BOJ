@@ -1,14 +1,13 @@
-def gauss(matrix):
-    n = len(matrix)
+def f(m):
+    n=len(m)
     for i in range(n):
-        div = matrix[i][i];
-        for j in range(i, n + 1):matrix[i][j] /= div
+        d=m[i][i];
+        for j in range(i,n+1):m[i][j]/=d
         for j in range(n):
-            if i == j:continue
-            div = -matrix[j][i]
-            for k in range(n + 1):matrix[j][k] += matrix[i][k] * div
-    return [row[n] for row in matrix]
-arr = []
-[arr.append(list(map(float,input().split()))) for i in range(int(input()))]
-res = (gauss(arr))
-print(*[f'{i:.0f}'for i in res])
+            if i==j:continue
+            d=-m[j][i]
+            for k in range(n+1):m[j][k]+=m[i][k]*d
+    return[row[n]for row in m]
+l=[]
+[l.append(list(map(float, input().split()))) for i in range(int(input()))]
+print(*[f'{i:.0f}'for i in f(l)])
