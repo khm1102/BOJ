@@ -1,47 +1,49 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
-static const ll inf = 2e14;
+long long floorDiv(long long a, long long b){
+    long long q = a / b;  
+    long long r = a % b;
 
-inline ll floordiv(ll a, ll b) {
-    ll q = a / b;
-    ll r = a % b;
-
-    if(r != 0 && a < 0) q--;
-    return q;
-}
-
-inline ll ceildiv(ll a, ll b) {
-    ll q = a / b;
-    ll r = a % b;
-
-    if(r != 0 && a > 0) q++;
-    return q;
-}
-
-bool play(ll n, ll m, ll k, const vector<ll>& p, ll l) {
-    ll s = 1, e = n;
-
-    for(int i = 0; i + 1 < (int)m; i++) {
-        ll d = p[i+1] - p[i];
-
-        ll dmn = ceildiv(d - l, k);
-        ll dmx = floordiv(d + l, k);
-        if(dmn > dmx) return false;
-
-        ll ns = s + dmn;
-        ll ne = e + dmx;
-
-        if(ns < 1) ns = 1;
-        if(ne > n) ne = n;
-        if(ns > ne) return false;
-
-        s = ns;
-        e = ne;
+    if(r != 0 && a < 0){
+        q -= 1;
     }
+    return q;
+}
 
+long long ceilDiv(long long a, long long b){
+    long long q = a / b; 
+    long long r = a % b;
+    if(r != 0 && a > 0){
+        q += 1;
+    }
+    return q;
+}
 
+bool canPlay(long long N, long long M, long long K, const vector<long long>& P, long long L){
+    long long s = 1, e = N;
+
+    for(int i=0; i < (int)M - 1; i++){
+        long long d = P[i+1] - P[i];
+        
+        long long deltaMin = ceilDiv(d - L, K);
+        long long deltaMax = floorDiv(d + L, K);
+
+        if(deltaMin > deltaMax) {
+            return false;
+        }
+
+        long long newS = s + deltaMin;
+        long long newE = e + deltaMax;
+
+        if(newS < 1) newS = 1;
+        if(newE > N) newE = N;
+
+        if(newS > newE) return false;
+
+        s = newS;
+        e = newE;
+    }
     return true;
 }
 
@@ -49,19 +51,24 @@ int main(){
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
-    ll n, m, k;
-    cin >> n >> m >> k;
+    long long N, M, K;
+    cin >> N >> M >> K;
 
-    vector<ll> p(m);
-    for(int i = 0; i < m; i++){
-        cin >> p[i];
+    vector<long long> P(M);
+    for(int i=0; i<(int)M; i++){
+        cin >> P[i];
     }
 
-    ll left = 0, right = inf;
+    long long left = 0;
+    long long right = 200000000000000LL;
+
     while(left < right){
-        ll mid = (left + right) / 2;
-        if(play(n, m, k, p, mid)) right = mid;
-        else left = mid + 1;
+        long long mid = (left + right) / 2;
+        if(canPlay(N, M, K, P, mid)){
+            right = mid;
+        } else {
+            left = mid + 1;
+        }
     }
 
     cout << left << "\n";
