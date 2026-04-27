@@ -1,3 +1,2 @@
-import math
 n=int(input())
-print(n-int(math.sqrt(n)) - int(math.sqrt(n/2)))
+print(n-int(n**(1/2))-int((n//2)**(1/2)))
