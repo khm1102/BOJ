@@ -10,6 +10,10 @@
 
 자료 구조, 스택
 
+### 제출 일자
+
+2023년 8월 5일 13:23:53
+
 ### 문제 설명
 
 <p>수식은 일반적으로 3가지 표기법으로 표현할 수 있다. 연산자가 피연산자 가운데 위치하는 중위 표기법(일반적으로 우리가 쓰는 방법이다), 연산자가 피연산자 앞에 위치하는 전위 표기법(prefix notation), 연산자가 피연산자 뒤에 위치하는 후위 표기법(postfix notation)이 그것이다. 예를 들어 중위 표기법으로 표현된 <code>a+b</code>는 전위 표기법으로는 <code>+ab</code>이고, 후위 표기법으로는 <code>ab+</code>가 된다.</p>
@@ -22,7 +26,7 @@
 
 <p>다른 예를 들어 그림으로 표현하면 <code>A+B*C-D/E</code>를 완전하게 괄호로 묶고 연산자를 이동시킬 장소를 표시하면 다음과 같이 된다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 166px; height: 50px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/5aad2feb-d9fc-430a-954d-73a06ba0215f/-/preview/" style="width: 166px; height: 50px;"></p>
 
 <p style="text-align: center;">결과: <code>ABC*+DE/-</code></p>
 
