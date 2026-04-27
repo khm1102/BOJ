@@ -4,7 +4,7 @@
 
 ### 성능 요약
 
-메모리: 111316 KB, 시간: 136 ms
+메모리: 25408 KB, 시간: 336 ms
 
 ### 분류
 
@@ -12,11 +12,11 @@
 
 ### 제출 일자
 
-2023년 11월 16일 13:47:22
+2023년 11월 16일 13:46:19
 
 ### 문제 설명
 
-<p style="text-align:center"><img alt="" src="https://onlinejudgeimages.s3-ap-northeast-1.amazonaws.com/problem/13199/chicken.jpg" style="height:520px; width:780px"></p>
+<p style="text-align:center"><img alt="" src="" style="height:520px; width:780px"></p>
 
 <p>서울대학교 301동에는 아는 사람만 아는 “눕치킨”이란 치킨집이 있다. 이 치킨집은 여느 치킨집처럼 치킨을 시킬 때 마다 쿠폰을 <em>C</em> 장 주고, 쿠폰을 <em>F</em> 장 모으면 치킨을 공짜로 시킬 수 있다.</p>
 
