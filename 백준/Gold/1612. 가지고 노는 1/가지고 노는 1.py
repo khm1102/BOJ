@@ -8,6 +8,4 @@ def f(n):
         r = (r * 10 + 1) % n
         length += 1
     return length
-
-n = int(input())
-print(f(n))
+print(f(int(input())))
