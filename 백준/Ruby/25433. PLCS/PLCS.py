@@ -8,40 +8,50 @@ def is_prime(num):
             return False
     return True
 
-def solve(s1, s2):
-    d = 0
-    match = [0] * 26
 
-    for i, j in enumerate(s2):
-        match[ord(j) - ord('a')] |= 1 << i
+def process_lcs_with_bitset(s1, s2):
+    D = 0
+    Match = [0] * 26
 
-    for j in s1:
+    for i, char in enumerate(s2):
+        Match[ord(char) - ord('a')] |= 1 << i
 
-        x = match[ord(j) - ord('a')] | d
-        y = (d << 1) | 1
+    for char in s1:
+        x = Match[ord(char) - ord('a')] | D
+        y = (D << 1) | 1
 
-        d = x ^ (x & (x - y))
+        D = x ^ (x & (x - y))
 
-    return bin(d).count('1')
-
-
-
-s, t, x, y = input(), input(), input(), input()
-
-# 문자열에서 y를 모두 제거
-s, t = map(lambda z: z.replace(y, ''), (s, t))
-
-# x가 나타나는 첫 번째 위치 찾기
-pos_s, pos_t = map(lambda z: z.find(x), (s, t))
+    return bin(D).count('1')
 
 
-# x를 기준으로 문자열을 나누기
-s1, s2 = s.split(x, 1) if pos_s != -1 else (s, "")
-t1, t2 = t.split(x, 1) if pos_t != -1 else (t, "")
+def main():
+    s = input()
+    t = input()
+    x = input()
+    y = input()
 
-# solve 함수 호출
-ret1, ret2 = map(lambda s, t: solve(s, t), (s1, s2), (t1, t2))
+    s = s.replace(y, '')
+    t = t.replace(y, '')
+
+    pos_s = s.find(x)
+    pos_t = t.find(x)
+
+    s1 = s[:pos_s]
+    s2 = s[pos_s + 1:]
+    t1 = t[:pos_t]
+    t2 = t[pos_t + 1:]
+
+    ret1 = process_lcs_with_bitset(s1, t1)
+    ret2 = process_lcs_with_bitset(s2, t2)
+
+    for i in range(ret1 + ret2 + 1, -1, -1):
+        if is_prime(i):
+            print(i)
+            return
+
+    print(-1)
 
 
-print(next((i for i in range(ret1 + ret2 + 1, -1, -1) if is_prime(i)), -1))
-
+if __name__ == "__main__":
+    main()
