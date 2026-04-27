@@ -1,3 +1,16 @@
+import sys
+import os
+import math
+import cmath
+import decimal
+import itertools
+import heapq
+from bisect import bisect_left, bisect_right
+from collections import deque
+
+def input(): return sys.stdin.readline().strip()
+def print(val):return sys.stdout.write(str(val))
+
 def dist_squared(p1, p2):
     return (p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2
 
