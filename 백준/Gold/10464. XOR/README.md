@@ -10,9 +10,13 @@
 
 수학
 
+### 제출 일자
+
+2023년 8월 14일 09:35:15
+
 ### 문제 설명
 
-<p><img alt="" src="" style="float:right; height:50px; width:100px"> <em>S</em>에서 <em>F</em>까지의 모든 정수를 XOR한 값은 무엇일까?</p>
+<p><img alt="" src="https://www.acmicpc.net/upload/images2/XOR.png" style="float:right; height:50px; width:100px"> <em>S</em>에서 <em>F</em>까지의 모든 정수를 XOR한 값은 무엇일까?</p>
 
 ### 입력 
 
