@@ -1,0 +1,1 @@
+print((lambda n, k: n ** 2 - k ** 2)(*map(int, input().split())))
