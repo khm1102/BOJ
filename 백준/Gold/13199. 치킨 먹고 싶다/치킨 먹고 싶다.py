@@ -1,4 +1,2 @@
-import sys;input = sys.stdin.readline
-for _ in range(int(input())):
-	p,m,f,c=map(int,input().split())
-	print(((c*(m//p)-c)//(f-c))-(c*(m//p)//f)if c*(m//p)>f else 0)
+import sys;k=sys.stdin.readline
+print(*[((c*(m//p)-c)//(f-c))-(c*(m//p)//f)if c*(m//p)>f else 0 for _ in range(int(k()))for p,m,f,c in [map(int,k().split())]])
