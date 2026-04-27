@@ -1,0 +1,4 @@
+aabbcbad
+ababacda
+c
+b
