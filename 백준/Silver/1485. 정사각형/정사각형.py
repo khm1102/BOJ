@@ -14,4 +14,4 @@ for _ in range(tc):
             s.append((x[i] - x[j]) ** 2 + (y[i] - y[j]) ** 2)
 
     s.sort()
-    print(int(s[1] == s[1] == s[2] == s[3] and s[4] == s[5]))
+    print(int(s[0] == s[1] == s[2] == s[3] and s[4] == s[5]))
