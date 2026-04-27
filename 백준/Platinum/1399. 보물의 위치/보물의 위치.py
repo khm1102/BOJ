@@ -1,26 +1,22 @@
-def dig(x):
-    return x if x < 10 else dig(sum(map(int, str(x))))
+import sys
+def input(): return sys.stdin.readline().strip()
+def f(x):return x if x < 10 else f(sum(map(int, str(x))))
 
-def main():
-    t = int(input())
-    for _ in range(t):
-        k, m = map(int, input().split())
-        x, y, direction = 0, 0, 0
-        visited = [0] * 10
-        num = 1
-        q = []
-        while k > 0:
-            if visited[num]:
-                q = q[q.index(num):]
-                k %= (4 * len(q))
-                if k == 0:
-                    break
-            visited[num] = 1
-            q.append(num)
-            x += [0, num, 0, -num][direction]
-            y += [num, 0, -num, 0][direction]
-            k, num, direction = k - 1, dig(num * m), (direction + 1) % 4
-        print(x, y)
-
-if __name__ == "__main__":
-    main()
+for _ in range(int(input())):
+    k, m = map(int, input().split())
+    x, y, d = 0, 0, 0
+    v = [0] * 10
+    num = 1
+    arr = []
+    while k > 0:
+        if v[num]:
+            arr = arr[arr.index(num):]
+            k %= (4 * len(arr))
+            if k == 0:
+                break
+        v[num] = 1
+        arr.append(num)
+        x += [0, num, 0, -num][d]
+        y += [num, 0, -num, 0][d]
+        k, num, d = k - 1, f(num * m), (d + 1) % 4
+    print(x, y)
