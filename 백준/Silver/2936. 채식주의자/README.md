@@ -1,4 +1,4 @@
-# [Silver IV] 채식주의자 - 2936 
+# [Silver III] 채식주의자 - 2936 
 
 [문제 링크](https://www.acmicpc.net/problem/2936) 
 
@@ -8,7 +8,11 @@
 
 ### 분류
 
-많은 조건 분기, 기하학, 구현, 수학
+수학, 구현, 기하학, 많은 조건 분기
+
+### 제출 일자
+
+2023년 8월 2일 02:29:16
 
 ### 문제 설명
 
@@ -16,7 +20,7 @@
 
 <p>수영장은 직각 이등변 삼각형이고, 두 변의 길이가 250이다.</p>
 
-<p style="text-align: center;"><img alt="" src="" style="width: 301px; height: 293px;"></p>
+<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/6346bc36-3ded-41b6-9a1f-2395fe8db516/-/preview/" style="width: 301px; height: 293px;"></p>
 
 <p>사실 상범이가 수영장을 만든 이유는 파티였다. 파티에는 많은 여학생들이 왔고, DJ도 왔다. 또, 고기는 매우 맛있게 구워지고 있었다.</p>
 
