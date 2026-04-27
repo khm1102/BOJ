@@ -1,30 +1,28 @@
 import math
 
-coordinates = []
-
+coords = []
 size = int(input())
 
 for _ in range(size):
     x, y = map(int, input().split())
-    coordinates.append((x, y))
+    coords.append((x, y))
 
-x_avg = sum(pt[0] for pt in coordinates) / size
-y_avg = sum(pt[1] for pt in coordinates) / size
+x_avg = sum(pt[0] for pt in coords) / size
+y_avg = sum(pt[1] for pt in coords) / size
 
-precision = 0.1
-max_distance = 0
+prec = 0.1
+max_dist = 0
 for _ in range(25000):
     idx = 0
-    max_distance = (x_avg - coordinates[0][0]) ** 2 + (y_avg - coordinates[0][1]) ** 2
+    max_dist = (x_avg - coords[0][0]) ** 2 + (y_avg - coords[0][1]) ** 2
     for j in range(1, size):
-        distance = (x_avg - coordinates[j][0]) ** 2 + (y_avg - coordinates[j][1]) ** 2
-        if max_distance < distance:
-            max_distance = distance
+        dist = (x_avg - coords[j][0]) ** 2 + (y_avg - coords[j][1]) ** 2
+        if max_dist < dist:
+            max_dist = dist
             idx = j
-    x_avg += (coordinates[idx][0] - x_avg) * precision
-    y_avg += (coordinates[idx][1] - y_avg) * precision
-    precision *= 0.999
+    x_avg += (coords[idx][0] - x_avg) * prec
+    y_avg += (coords[idx][1] - y_avg) * prec
+    prec *= 0.999
 
-distance = round(math.sqrt(max_distance) * 2, 2)
-
-print('{:.2f}'.format(distance))
+dist = round(math.sqrt(max_dist) * 2, 2)
+print('{:.2f}'.format(dist))
