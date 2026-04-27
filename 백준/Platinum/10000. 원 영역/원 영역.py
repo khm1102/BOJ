@@ -1,46 +1,40 @@
-import heapq
-class StackItem:
-    def __init__(self, pos, state):
-        self.pos = pos
-        self.state = state
-
 N = int(input())
-vec = []
+v = []
 for _ in range(N):
     x, r = map(int, input().split())
-    vec.append((x - r, -1))
-    vec.append((x + r, 1))
+    v.append((x - r, -1))
+    v.append((x + r, 1))
 
-vec.sort(key=lambda x: (x[0], -x[1]))
+v.sort(key=lambda x: (x[0], -x[1]))
 
 ans = 0
 last = 0
-st = []
+s = []
 
-for i in range(len(vec)):
-    if not st:
-        st.append(StackItem(vec[i][0], 0))
-        last = vec[i][0]
-    elif vec[i][1] == -1:
-        if vec[i][0] == last:
+for i in range(len(v)):
+    if not s:
+        s.append((v[i][0], 0))
+        last = v[i][0]
+    elif v[i][1] == -1:
+        if v[i][0] == last:
             vec_tmp = []
-            tmp = st.pop()
-            if tmp.state != -1:
-                tmp.state = 1
-            st.append(tmp)
-            st.append(StackItem(vec[i][0], 0))
+            tmp = s.pop()
+            if tmp[1] != -1:
+                tmp = (tmp[0], 1)
+            s.append(tmp)
+            s.append((v[i][0], 0))
         else:
-            tmp = st.pop()
-            tmp.state = -1
-            st.append(tmp)
-            st.append(StackItem(vec[i][0], 0))
-            last = vec[i][0]
-    elif vec[i][1] == 1:
-        tmp = st.pop()
-        if tmp.state == 1 and last == vec[i][0]:
+            tmp = s.pop()
+            tmp = (tmp[0], -1)
+            s.append(tmp)
+            s.append((v[i][0], 0))
+            last = v[i][0]
+    elif v[i][1] == 1:
+        tmp = s.pop()
+        if tmp[1] == 1 and last == v[i][0]:
             ans += 2
         else:
             ans += 1
-        last = vec[i][0]
+        last = v[i][0]
 
 print(ans + 1)
