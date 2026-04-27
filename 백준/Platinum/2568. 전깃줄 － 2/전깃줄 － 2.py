@@ -1,35 +1,31 @@
-import bisect
+import sys
+from bisect import bisect_left
 
-def main():
+def solve():
     n = int(input())
-    x = [tuple(map(int, input().split())) for _ in range(n)]
-    x.sort()
+    lines = sorted([tuple(map(int, input().split())) for _ in range(n)])
+    dp, trace = [], [-1] * n
 
-    ans = [x[0][1]]
-    idx = [0]
-
-    for a, b in x[1:]:
-        if ans[-1] < b:
-            ans.append(b)
-            idx.append(len(ans) - 1)
+    for i, (_, b) in enumerate(lines):
+        if not dp or dp[-1][1] < b:
+            if dp:
+                trace[i] = dp[-1][0]
+            dp.append((i, b))
         else:
-            pos = bisect.bisect_left(ans, b)
-            ans[pos] = b
-            idx.append(pos)
+            idx = bisect_left([b for _, b in dp], b)
+            dp[idx] = (i, b)
+            if idx > 0:
+                trace[i] = dp[idx - 1][0]
 
-    print(len(x) - len(ans))
+    lis_set = set()
+    i = dp[-1][0]
+    while i >= 0:
+        lis_set.add(i)
+        i = trace[i]
 
-    sibal = []
-    now = len(ans) - 1
-    for i in range(len(idx) - 1, -1, -1):
-        if now == idx[i]:
-            now -= 1
-        else:
-            sibal.append(x[i][0])
+    print(n - len(dp))
+    for i, (a, _) in enumerate(lines):
+        if i not in lis_set:
+            print(a)
 
-    sibal.sort()
-    for i in sibal:
-        print(i)
-
-if __name__ == "__main__":
-    main()
+solve()
