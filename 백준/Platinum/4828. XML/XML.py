@@ -1,83 +1,41 @@
-def is_tag(c: str) -> bool:
-    return "a" <= c <= "z" or "0" <= c <= "9"
+from re import compile
 
+TOKEN = compile(
+    r"<(?P<self>[a-z0-9]+)/>"
+    r"|</(?P<close>[a-z0-9]+)>"
+    r"|<(?P<open>[a-z0-9]+)>"
+    r"|&(?:lt|gt|amp);"
+    r"|&x(?P<hex>[0-9A-Fa-f]+);"
+    r"|(?P<text>[^<>&]+)"
+)
 
-def parser(line: str) -> bool:
+def parser(line):
     if not line:
         return True
-    
+
     stack = []
-    i = 0
-    n = len(line)
-    while i < n:
-        c = line[i]
-        if c == "<":
-            j = i + 1
-            while j < n and line[j] != ">":
-                j += 1
-                
-            if j >= n:
-                return False
-            inner = line[i + 1:j]
+    total = 0
+
+    for i in TOKEN.finditer(line):
+        total += len(i.group())
+        d = i.lastgroup
+
+        if d == "open":
+            stack.append(i[d])
             
-            if not inner:
+        elif d == "close":
+            if not stack or stack[-1] != i[d]:
                 return False
+            stack.pop()
             
-            if inner[0] == "/":
-                tag = inner[1:]
-                if not tag or not all(is_tag(c) for c in tag):
-                    return False
-                if not stack or stack[-1] != tag:
-                    return False
-                stack.pop()
-            elif inner[-1] == "/":
-                tag = inner[:-1]
-                if not tag or not all(is_tag(c) for c in tag):
-                    return False
-            else:
-                tag = inner
-                if not all(is_tag(c) for c in tag):
-                    return False
-                stack.append(tag)
-            i = j + 1
-        elif c == "&":
-            j = i + 1
-            while j < n and line[j] != ";":
-                if line[j] == "<" or line[j] == ">":
-                    return False
-                j += 1
-            if j >= n:
-                return False
-            e = line[i + 1:j]
-
-            if e in ("lt", "gt", "amp"):
-                pass
-
-            elif e and e[0] == "x":
-                h = e[1:]
-                if not h:
-                    return False
-
-                if len(h) % 2 != 0:
-                    return False
-
-                try:
-                    int(h, 16)
-                except Exception:
-                    return False
-
-            else:
-                return False
-            i = j + 1
-
-        elif c == ">":
+        elif d == "hex" and len(i[d]) % 2:
+            return False
+        
+        elif d == "text" and not i[d].isascii():
             return False
 
-        else:
-            i += 1
-
-    return not stack
-
+    return total == len(line) and not stack
 
 for i in open(0):
     print("valid" if parser(i.rstrip("\n")) else "invalid")
+    
