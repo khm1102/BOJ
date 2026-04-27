@@ -1,46 +1,56 @@
 import math
 
-while True:
-    N = int(input())
+class f:
+    def __init__(self):
+        self.points = []
+        self.x = 0
+        self.y = 0
+        self.z = 0
+        self.r = 0.1
 
-    if N == 0:
-        break
+    def euclidean(self, x1, y1, z1, x2, y2, z2):
+        return math.hypot(x1 - x2, y1 - y2, z1 - z2)
 
-    a = [0] * N
-    b = [0] * N
-    c = [0] * N
+    def update(self, point):
+        self.x += (point[0] - self.x) * self.r
+        self.y += (point[1] - self.y) * self.r
+        self.z += (point[2] - self.z) * self.r
+        self.r *= 0.999
 
-    for i in range(N):
-        a[i], b[i], c[i] = map(float, input().split())
+    def find_farthest_point(self):
+        distance = self.euclidean(self.x, self.y, self.z, self.points[0][0], self.points[0][1], self.points[0][2])
+        index = 0
 
-    x = sum(a) / N
-    y = sum(b) / N
-    z = sum(c) / N
+        for j in range(1, len(self.points)):
+            current = self.euclidean(self.x, self.y, self.z, self.points[j][0], self.points[j][1], self.points[j][2])
+            if current > distance:
+                distance = current
+                index = j
 
-    ratio = 0.1
-    max_distance = 0
-    current_distance = 0
+        return index, distance
 
-    for i in range(70000):
-        max_distance_index = 0
-        max_distance = math.hypot(x - a[0], y - b[0], z - c[0])
+    def solve(self):
+        while True:
+            n = int(input())
+            if n == 0:
+                break
 
-        for j in range(1, N):
-            current_distance = math.hypot(x - a[j], y - b[j], z - c[j])
-            if max_distance < current_distance:
-                max_distance = current_distance
-                max_distance_index = j
+            self.points = [tuple(map(float, input().split())) for _ in range(n)]
 
-        x += (a[max_distance_index] - x) * ratio
-        y += (b[max_distance_index] - y) * ratio
-        z += (c[max_distance_index] - z) * ratio
-        ratio *= 0.999
+            self.x, self.y, self.z = map(lambda coord: sum(coord) / n, zip(*self.points))
+            self.r = 0.1
+            md = 0
 
-    if round(x) == 0:
-        x = 0
-    if round(y) == 0:
-        y = 0
-    if round(z) == 0:
-        z = 0
+            for _ in range(70000):
+                index, md = self.find_farthest_point()
+                self.update(self.points[index])
 
-    print(f"{max_distance:.5f}")
+            self.x = 0 if round(self.x) == 0 else self.x
+            self.y = 0 if round(self.y) == 0 else self.y
+            self.z = 0 if round(self.z) == 0 else self.z
+
+            print(f"{md:.5f}")
+
+if __name__ == "__main__":
+    sphere_fitting = f()
+    sphere_fitting.solve()
