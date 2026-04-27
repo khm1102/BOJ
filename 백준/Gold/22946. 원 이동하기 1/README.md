@@ -8,7 +8,11 @@
 
 ### 분류
 
-깊이 우선 탐색, 기하학, 그래프 이론, 그래프 탐색, 정렬, 트리
+그래프 이론, 그래프 탐색, 정렬, 기하학, 트리, 깊이 우선 탐색, 트리의 지름
+
+### 제출 일자
+
+2023년 9월 30일 16:16:24
 
 ### 문제 설명
 
@@ -22,19 +26,19 @@
 
 <p>좌표평면에 두 원 A, B만 존재한 상황에서 원 A 내부에서 원 B 내부로 올바르게 이동하는 경우는 아래와 같다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/bb24a122-acb9-4aa4-a619-c1ebaac3a086/-/crop/1358x768/281,155/-/preview/" style="height: 283px; width: 500px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="height: 283px; width: 500px;"></p>
 
 <p style="text-align: center;">1. 원 A와 원 B가 서로 포함관계가 아니고 만나지 않는 경우</p>
 
 <p>첫 번째 경우는 원 A 내부 $\rightarrow$ 좌표평면 $\rightarrow$ 원 B 내부로 이동하였다. 이 경우를 제외한 올바른 경로는 존재하지 않는다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/cda92dcb-b2c6-4c91-a99c-7dcf8ae73e74/-/crop/840x833/542,126/-/preview/" style="height: 298px; width: 300px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="height: 298px; width: 300px;"></p>
 
 <p style="text-align: center;">2. 원 B가 원 A안에 존재하는 경우</p>
 
 <p>두 번째 경우는 원 A 내부 $\rightarrow$ 원 B 내부로 이동하였다. 이 경우를 제외한 올바른 경로는 존재하지 않는다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/4a0e9613-390c-4b58-854f-5e37511f1315/-/crop/828x823/545,131/-/preview/" style="height: 298px; width: 300px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="height: 298px; width: 300px;"></p>
 
 <p style="text-align: center;">3. 원 A가 원 B안에 존재하는 경우</p>
 
@@ -42,13 +46,13 @@
 
 <p>아래 경우는 원 A 내부에서 원 B로 올바르게 이동하지 않은 경우들이다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/b175d26f-3ff9-47a6-acff-36aded60f42e/-/crop/1361x773/281,155/-/preview/" style="height: 284px; width: 500px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="height: 284px; width: 500px;"></p>
 
 <p style="text-align: center;">4. 좌표평면 위에 원 A, B, C가 존재하고 서로 포함관계가 아니면서 만나지 않는 경우</p>
 
 <p>이 경우는 원 A 내부 $\rightarrow$ 좌표평면 $\rightarrow$ 원 C 내부 $\rightarrow$ 좌표평면 $\rightarrow$ 원 B 내부로 이동한 경로이다. 좌표평면을 2번 방문하였기 때문에 올바르게 이동한게 아니다.</p>
 
-<p style="text-align: center;"><img alt="" src="https://upload.acmicpc.net/f2dff913-6138-43ec-b8ab-d0b6ea21834a/-/crop/1462x907/230,88/-/preview/" style="height: 310px; width: 500px;"></p>
+<p style="text-align: center;"><img alt="" src="" style="height: 310px; width: 500px;"></p>
 
 <p style="text-align: center;">4. 좌표평면 위에 원 A, B가 존재하고 원 B가 원 A의 내부에 있을 경우</p>
 
