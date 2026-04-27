@@ -1,4 +1,4 @@
-# [Platinum V] Wall construction - 10903 
+# [Platinum IV] Wall construction - 10903 
 
 [문제 링크](https://www.acmicpc.net/problem/10903) 
 
@@ -8,7 +8,7 @@
 
 ### 분류
 
-볼록 껍질, 기하학
+기하학, 볼록 껍질
 
 ### 제출 일자
 
